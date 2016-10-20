@@ -31,8 +31,8 @@ public struct ColorScheme {
     /// The primary color
     public var primaryColor: UIColor {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(
-                Keys.colorSchemeDidChangeName,
+            NotificationCenter.default.post(
+                name: Notification.Name(rawValue: Keys.colorSchemeDidChangeName),
                 object: nil,
                 userInfo: [
                     Keys.colorSchemeColorFieldName: ColorFieldNames.primaryColorFieldName,
@@ -44,8 +44,8 @@ public struct ColorScheme {
     /// The secondary color
     public var secondaryColor: UIColor {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(
-                Keys.colorSchemeDidChangeName,
+            NotificationCenter.default.post(
+                name: Notification.Name(rawValue: Keys.colorSchemeDidChangeName),
                 object: nil,
                 userInfo: [
                     Keys.colorSchemeColorFieldName: ColorFieldNames.secondaryColorFieldName,
@@ -57,8 +57,8 @@ public struct ColorScheme {
     /// An accent color
     public var accentColor: UIColor {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(
-                Keys.colorSchemeDidChangeName,
+            NotificationCenter.default.post(
+                name: Notification.Name(rawValue: Keys.colorSchemeDidChangeName),
                 object: nil,
                 userInfo: [
                     Keys.colorSchemeColorFieldName: ColorFieldNames.accentColorFieldName,
@@ -70,8 +70,8 @@ public struct ColorScheme {
     /// Content fill color
     public var fillColor: UIColor {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(
-                Keys.colorSchemeDidChangeName,
+            NotificationCenter.default.post(
+                name: Notification.Name(rawValue: Keys.colorSchemeDidChangeName),
                 object: nil,
                 userInfo: [
                     Keys.colorSchemeColorFieldName: ColorFieldNames.fillColorFieldName,
@@ -83,8 +83,8 @@ public struct ColorScheme {
     /// The color of primary text
     public var primaryTextColor: UIColor {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(
-                Keys.colorSchemeDidChangeName,
+            NotificationCenter.default.post(
+                name: Notification.Name(rawValue: Keys.colorSchemeDidChangeName),
                 object: nil,
                 userInfo: [
                     Keys.colorSchemeColorFieldName: ColorFieldNames.primaryTextColorFieldName,
@@ -96,8 +96,8 @@ public struct ColorScheme {
     /// The color of secondary text
     public var secondaryTextColor: UIColor {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(
-                Keys.colorSchemeDidChangeName,
+            NotificationCenter.default.post(
+                name: Notification.Name(rawValue: Keys.colorSchemeDidChangeName),
                 object: nil,
                 userInfo: [
                     Keys.colorSchemeColorFieldName: ColorFieldNames.secondaryTextColorFieldName,
@@ -109,8 +109,8 @@ public struct ColorScheme {
     /// The color of text that isn't primary or secondary
     public var textColor: UIColor {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(
-                Keys.colorSchemeDidChangeName,
+            NotificationCenter.default.post(
+                name: Notification.Name(rawValue: Keys.colorSchemeDidChangeName),
                 object: nil,
                 userInfo: [
                     Keys.colorSchemeColorFieldName: ColorFieldNames.textColorFieldName,
@@ -122,8 +122,8 @@ public struct ColorScheme {
     /// A divider color
     public var dividerColor: UIColor {
         didSet {
-            NSNotificationCenter.defaultCenter().postNotificationName(
-                Keys.colorSchemeDidChangeName,
+            NotificationCenter.default.post(
+                name: Notification.Name(rawValue: Keys.colorSchemeDidChangeName),
                 object: nil,
                 userInfo: [
                     Keys.colorSchemeColorFieldName: ColorFieldNames.dividerColorFieldName,
@@ -137,8 +137,8 @@ public struct ColorScheme {
         Posts a generic notification about the color scheme having changed.
     */
     public func postColorDidChangeNotification() {
-        NSNotificationCenter.defaultCenter().postNotificationName(
-            Keys.colorSchemeDidChangeName,
+        NotificationCenter.default.post(
+            name: Notification.Name(rawValue: Keys.colorSchemeDidChangeName),
             object: nil,
             userInfo: nil
         )
