@@ -27,7 +27,8 @@
 import Foundation
 import UIKit
 
-public struct ColorScheme {
+public final class ColorScheme: NSObject, NSCoding {
+
     /// The primary color
     public var primaryColor: UIColor {
         didSet {
@@ -132,7 +133,28 @@ public struct ColorScheme {
             )
         }
     }
-    
+
+    /// Construct a new color scheme with the given color values.
+    public init(primaryColor: UIColor,
+                secondaryColor: UIColor,
+                accentColor: UIColor,
+                fillColor: UIColor,
+                primaryTextColor: UIColor,
+                secondaryTextColor: UIColor,
+                textColor: UIColor,
+                dividerColor: UIColor) {
+        self.primaryColor = primaryColor
+        self.secondaryColor = secondaryColor
+        self.accentColor = accentColor
+        self.fillColor = fillColor
+        self.primaryTextColor = primaryTextColor
+        self.secondaryTextColor = secondaryTextColor
+        self.textColor = textColor
+        self.dividerColor = dividerColor
+
+        super.init()
+    }
+
     /**
         Posts a generic notification about the color scheme having changed.
     */
@@ -142,6 +164,50 @@ public struct ColorScheme {
             object: nil,
             userInfo: nil
         )
+    }
+
+    // MARK: - NSCoding
+    public required init?(coder aDecoder: NSCoder) {
+        guard let primaryColor = aDecoder
+            .decodeObject(forKey: ColorFieldNames.primaryColorFieldName) as? UIColor,
+            let secondaryColor = aDecoder
+                .decodeObject(forKey: ColorFieldNames.secondaryColorFieldName) as? UIColor,
+            let accentColor = aDecoder
+                .decodeObject(forKey: ColorFieldNames.accentColorFieldName) as? UIColor,
+            let fillColor = aDecoder
+                .decodeObject(forKey: ColorFieldNames.fillColorFieldName) as? UIColor,
+            let primaryTextColor = aDecoder
+                .decodeObject(forKey: ColorFieldNames.primaryTextColorFieldName) as? UIColor,
+            let secondaryTextColor = aDecoder
+                .decodeObject(forKey: ColorFieldNames.secondaryTextColorFieldName) as? UIColor,
+            let textColor = aDecoder
+                .decodeObject(forKey: ColorFieldNames.textColorFieldName) as? UIColor,
+            let dividerColor = aDecoder
+                .decodeObject(forKey: ColorFieldNames.dividerColorFieldName) as? UIColor else {
+                    return nil
+        }
+
+        self.primaryColor = primaryColor
+        self.secondaryColor = secondaryColor
+        self.accentColor = accentColor
+        self.fillColor = fillColor
+        self.primaryTextColor = primaryTextColor
+        self.secondaryTextColor = secondaryTextColor
+        self.textColor = textColor
+        self.dividerColor = dividerColor
+
+        super.init()
+    }
+
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(primaryColor, forKey: ColorFieldNames.primaryColorFieldName)
+        aCoder.encode(secondaryColor, forKey: ColorFieldNames.secondaryColorFieldName)
+        aCoder.encode(accentColor, forKey: ColorFieldNames.accentColorFieldName)
+        aCoder.encode(fillColor, forKey: ColorFieldNames.fillColorFieldName)
+        aCoder.encode(primaryTextColor, forKey: ColorFieldNames.primaryTextColorFieldName)
+        aCoder.encode(secondaryTextColor, forKey: ColorFieldNames.secondaryTextColorFieldName)
+        aCoder.encode(textColor, forKey: ColorFieldNames.textColorFieldName)
+        aCoder.encode(dividerColor, forKey: ColorFieldNames.dividerColorFieldName)
     }
 }
 
